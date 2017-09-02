@@ -2,6 +2,7 @@
   "name": "obj-engine-perms",
   "version": "1.0.0",
   "description": "Event to object mapping with permission enforcer",
+  "repository": "https://github.com/sunny-lan/obj-engine-perms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
