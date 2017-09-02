@@ -5,7 +5,8 @@
   "repository": "https://github.com/sunny-lan/obj-engine-perms",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node test.js"
   },
   "author": "Sunny",
   "license": "ISC",
