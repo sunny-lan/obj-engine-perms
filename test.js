@@ -37,10 +37,10 @@ cl("Create simple #1");
 
 p.updatePerm(ROOT, state, ["entities"], p.WILDCARD, p.PERMS.CREATE, true);
 p.updatePerms(ROOT, state, ["serverSecret"], p.WILDCARD, p.PERMS.NONE);
-
 cl("Perm update simple");
 
 p.create(USER1, state, ["entities"], "lkdsfj", {speed: 345, location: 666});
+p.updatePerm(USER1, state, ["entities", "lkdsfj"], p.WILDCARD, p.PERMS.READ, false);
 p.create(USER2, state, ["entities"], "lkdsfj1", {speed: 34235, location: 6632656});
 cl("Create simple #2");
 
@@ -57,8 +57,8 @@ cl("Del simple");
 
 console.log("Attempting invalid read:");
 try {
-     p.read(USER2, state, ["entities", "lkdsfj"]);
-}catch(e){
+    console.log(p.read(USER2, state, ["entities", "lkdsfj"]));
+} catch (e) {
     console.log("Invalid read successfully caught", e);
 }
 
@@ -71,9 +71,9 @@ try {
 }
 
 
-// Advanced permission catch tests
+// Advanced catch tests
 
-//Permission escalation by creating an existing path
+//Permission escalation by creating an e`xisting path
 console.log("Attempting overwrite:");
 try {
     p.create(USER2, state, ["entities"], "lkdsfj", {speed: 345234265, location: 643566});
@@ -86,6 +86,14 @@ try {
 console.log("Attempting block:");
 try {
     p.updatePerms(USER1, state, ["entities", "lkdsfj"], ROOT, p.PERMS.NONE);
-}catch (e){
+} catch (e) {
     console.log("Block successfully caught", e);
 }
+
+//Break perm tree by creating array
+console.log("Attempting array break:");
+p.create(USER1, state, ["entities"], "abc", []);
+p.create(USER1, state, ["entities", "abc"], 0, "test");
+p.updatePerm(USER1, state, ["entities", "abc", 0], p.WILDCARD, p.PERMS.READ, true);
+
+cl("Final state");
