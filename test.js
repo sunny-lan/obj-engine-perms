@@ -30,6 +30,8 @@ cl("Perm update root");
 
 //Simple tests
 
+
+
 console.log("Read perms simple", p.readPerms(state, [], USER2));
 
 p.create(ROOT, state, [], "serverSecret", {"secret stuff": "password123"});

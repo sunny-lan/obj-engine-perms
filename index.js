@@ -3,10 +3,12 @@ const resolve = require('object-path');
 class PermissionError extends Error {
 }
 
-const WILDCARD = '*';
 const PERM_KEY = "__permissions";
 const OBJ_KEY = "__obj";
+const USER_KEY = "__users";
+
 const IMPORTANT_KEY = "!";
+const WILDCARD = '*';
 
 const PERMS = {
     CREATE: "CRT",
@@ -29,6 +31,14 @@ PERMS.NONE = Object.keys(PERMS).reduce(function (acc, val) {
 
 PERMS.ALL = tmp;
 
+const USER_LEVEL = {
+    ROOT: 0,
+    USER: 1
+};
+
+const DEFAULT_USER_LEVEL = Number.MAX_VALUE;
+
+
 //helper functions
 
 //returns path leading to perm tree
@@ -41,9 +51,19 @@ function o(path) {
     return [OBJ_KEY].concat(path);
 }
 
+//returns path leading to user tree
+function u(path) {
+    return [USER_KEY].concat(path);
+}
+
 //converts all path elements to string
 function ps(path) {
     return path.map((elem) => elem.toString());
+}
+
+//checks the level of user if its non root
+function ulr(state, user) {
+    return readUserLevel(state, user) > USER_LEVEL.ROOT;
 }
 
 function combine(perm1, perm2) {
@@ -101,42 +121,68 @@ function _read(state, path) {
 function _update(state, path, value) {
     resolve.set(state, o(path), value);
 }
+function readUserLevel(state, user) {
+    const lvl = resolve.get(state, u([user]));
+    if (lvl === undefined)return DEFAULT_USER_LEVEL;
+    return lvl;
+}
+function _updateUserLevel(user, state, level) {
+    resolve.set(state, u([user]), level);
+}
 
 
 //permissioned operations
 
 function updatePerms(srcUser, state, path, user, perms) {
-    if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
-    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Dst user has higher perms");
+    if (ulr(state, srcUser)) {
+        if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+        if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Dst user has higher perms");
+    }
     _updatePerms(state, user, path, perms);
 }
 function updatePerm(srcUser, state, path, user, perm, value) {
-    if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
-    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Dst user has higher perms");
+    if (ulr(state, srcUser)) {
+        if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+        if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Dst user has higher perms");
+    }
     _updatePerm(state, user, path, perm, value);
 }
 function create(srcUser, state, path, newObjName, newObjVal) {
-    if (!readPerms(state, path, srcUser)[PERMS.CREATE])throw new PermissionError("Not enough perms");
+    if (ulr(state, srcUser))
+        if (!readPerms(state, path, srcUser)[PERMS.CREATE])throw new PermissionError("Not enough perms");
     _create(state, path, newObjName, newObjVal);
     _updatePerms(state, srcUser, path.concat([newObjName]), PERMS.ALL);
 }
 function del(srcUser, state, path) {
-    if (!readPerms(state, path, srcUser)[PERMS.DELETE])throw new PermissionError("Not enough perms");
+    if (ulr(state, srcUser))
+        if (!readPerms(state, path, srcUser)[PERMS.DELETE])throw new PermissionError("Not enough perms");
     _del(state, path);
 }
 function read(srcUser, state, path) {
-    if (!readPerms(state, path, srcUser)[PERMS.READ]) throw new PermissionError("Not enough perms");
+    if (ulr(state, srcUser))
+        if (!readPerms(state, path, srcUser)[PERMS.READ]) throw new PermissionError("Not enough perms");
     return _read(state, path);
 }
 function update(srcUser, state, path, value) {
-    if (!readPerms(state, path, srcUser)[PERMS.UPDATE]) throw new PermissionError("Not enough perms");
+    if (ulr(state, srcUser))
+        if (!readPerms(state, path, srcUser)[PERMS.UPDATE]) throw new PermissionError("Not enough perms");
     _update(state, path, value);
 }
+
+function updateUserLevel(srcUser, state, level) {
+    if (ulr(state, srcUser)) throw Error("Not enough permissions");
+    _updateUserLevel(srcUser, state, level);
+}
+
 
 module.exports = {
     WILDCARD: WILDCARD,
     PERMS: PERMS,
     IMPORTANT_KEY: IMPORTANT_KEY,
+    USER_LEVEL: USER_LEVEL,
+
+    readUserLevel: readUserLevel,
+    updateUserLevel: updateUserLevel,
 
     readPerms: readPerms,
     u_updatePerms: _updatePerms,
