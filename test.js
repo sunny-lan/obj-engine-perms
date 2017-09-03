@@ -73,7 +73,7 @@ try {
 
 // Advanced catch tests
 
-//Permission escalation by creating an e`xisting path
+//Permission escalation by creating an existing path
 console.log("Attempting overwrite:");
 try {
     p.create(USER2, state, ["entities"], "lkdsfj", {speed: 345234265, location: 643566});
