@@ -17,7 +17,7 @@ const PERMS = {
 };
 
 
-PERMS.ALL = Object.keys(PERMS).reduce(function (acc, val) {
+const tmp = Object.keys(PERMS).reduce(function (acc, val) {
     acc[PERMS[val]] = true;
     return acc;
 }, {});
@@ -26,6 +26,8 @@ PERMS.NONE = Object.keys(PERMS).reduce(function (acc, val) {
     acc[PERMS[val]] = false;
     return acc;
 }, {});
+
+PERMS.ALL=tmp;
 
 //helper functions
 
