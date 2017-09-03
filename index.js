@@ -1,112 +1,136 @@
 const resolve = require('object-path');
 
-const wildcard = '*';
-const permKey = "__permissions";
-const objKey = "__obj";
+class PermissionError extends Error {
+}
+
+const WILDCARD = '*';
+const PERM_KEY = "__permissions";
+const OBJ_KEY = "__obj";
+const IMPORTANT_KEY = "!";
 
 const PERMS = {
-    CREATE: 1,
-    DELETE: 2,
-    UPDATE: 3,
-    READ: 4,
-    UPDATE_PERMS: 5,
+    CREATE: "CRT",
+    DELETE: "DEL",
+    UPDATE: "UPD",
+    READ: "RD",
+    UPDATE_PERMS: "UPD_P",
 };
 
-//helper functions
-const ALL_PERMS = Object.values(PERMS).reduce(function (acc, val) {
-    acc[val] = true;
+
+PERMS.ALL = Object.keys(PERMS).reduce(function (acc, val) {
+    acc[PERMS[val]] = true;
     return acc;
 }, {});
 
-//ensures the permtree exists in the given object, and returns it
-function pt(obj) {
-    resolve.ensureExists(obj, permKey, {});
-    return resolve.get(obj, permKey);
+PERMS.NONE = Object.keys(PERMS).reduce(function (acc, val) {
+    acc[PERMS[val]] = false;
+    return acc;
+}, {});
+
+//helper functions
+
+//returns path leading to perm tree
+function pt(path) {
+    return [PERM_KEY].concat(path);
 }
 
-//ensures the actual object exists in the given state, and returns it
-function o(obj) {
-    resolve.ensureExists(obj, objKey, {});
-    return resolve.get(obj, objKey);
+//returns path leading to actual object
+function o(path) {
+    return [OBJ_KEY].concat(path);
 }
 
 function combine(perm1, perm2) {
-    if (perm1.important) return perm1;
+    if (perm1[IMPORTANT_KEY]) return perm1;
     if (perm2 !== undefined) return perm2;
     return perm1;
 }
 
 function getPerm(permTree, user) {
-    const permAll = permTree[permKey];
+    const permAll = permTree[PERM_KEY];
     if (permAll === undefined) return undefined;
     let permUser = permAll[user];
-    if (permUser === undefined) permUser = permAll[wildcard];
+    if (permUser === undefined) permUser = permAll[WILDCARD];
     return permUser;
 }
 
 //non permissioned operations
 function _readPerms(idx, permTree, user, arr) {
-    if (permTree === undefined) return [];
     const perm = getPerm(permTree, user);
     if (idx === arr.length) return perm;
-    return combine(perm, _readPerms(idx + 1, permTree[arr[idx]], user, arr))
+    const next = permTree[arr[idx]];
+    if (next === undefined)return perm;
+    return combine(perm, _readPerms(idx + 1, next, user, arr))
 }
-function readPerms(obj, path, user) {
-    return _readPerms(0, pt(obj), user, path);
+function readPerms(state, path, user) {
+    return _readPerms(0, state[PERM_KEY], user, path);
 }
-function _writePerms(obj, user, path, perms) {
-    resolve.set(pt(obj), path.concat([permKey, user]), perms);
+function _updatePerms(state, user, path, perms) {
+    resolve.set(state, pt(path).concat([PERM_KEY, user]), perms);
 }
-function _create(obj, path, newObjName, newObjVal) {
-    resolve.set(o(obj), path.concat([newObjName]), newObjVal);
+function _updatePerm(state, user, path, perm, value) {
+    resolve.set(state, pt(path).concat([PERM_KEY, user, perm]), value);
 }
-function _del(obj, path) {
-    resolve.del(o(obj), path);
+function _create(state, path, newObjName, newObjVal) {
+    const newPath = o(path).concat([newObjName]);
+    if (resolve.has(state, newPath))throw new PermissionError("Object already exists");
+    resolve.set(state, newPath, newObjVal);
 }
-function _read(obj, path) {
-    return resolve.get(o(obj), path);
+function _del(state, path) {
+    resolve.del(state, o(path));
 }
-function _update(obj, path, value) {
-    resolve.set(o(obj), path, value);
+function _read(state, path) {
+    return resolve.get(state, o(path));
+}
+function _update(state, path, value) {
+    resolve.set(state, o(path), value);
 }
 
 //permissioned operations
-function writePerms(srcUser, obj, path, user, perms) {
-    if (readPerms(obj, path, srcUser)[perms.UPDATE_PERMS])return;
-    if (readPerms(obj, path, user)[perms.UPDATE_PERMS])return;
-    _writePerms(obj, user, perms);
+function updatePerms(srcUser, state, path, user, perms) {
+    if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+    _updatePerms(state, user, path, perms);
 }
-function create(srcUser, obj, path, newObjName, newObjVal) {
-    if (!readPerms(pt(obj), path, srcUser)[PERMS.CREATE])return;
-    const newPath = path.concat([newObjName]);
-    _create(obj, path, newObjName, newObjVal);
-    _writePerms(obj, srcUser, newPath, ALL_PERMS);
+function updatePerm(srcUser, state, path, user, perm, value) {
+    if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+    _updatePerm(state, user, path, perm, value);
 }
-function del(srcUser, obj, path) {
-    if (!readPerms(pt(obj), path, srcUser)[PERMS.DELETE])return;
-    _del(obj, path);
+function create(srcUser, state, path, newObjName, newObjVal) {
+    if (!readPerms(state, path, srcUser)[PERMS.CREATE])throw new PermissionError("Not enough perms");
+    _create(state, path, newObjName, newObjVal);
+    _updatePerms(state, srcUser, path.concat([newObjName]), PERMS.ALL);
 }
-function read(srcUser, obj, path) {
-    if (!readPerms(pt(obj), path, srcUser)[PERMS.READ]) return;
-    return _read(obj, path);
+function del(srcUser, state, path) {
+    if (!readPerms(state, path, srcUser)[PERMS.DELETE])throw new PermissionError("Not enough perms");
+    _del(state, path);
 }
-function update(srcUser, obj, path, value) {
-    if (!readPerms(pt(obj), path, srcUser)[PERMS.UPDATE]) return;
-    _update(obj, path, value);
+function read(srcUser, state, path) {
+    if (!readPerms(state, path, srcUser)[PERMS.READ]) throw new PermissionError("Not enough perms");
+    return _read(state, path);
+}
+function update(srcUser, state, path, value) {
+    if (!readPerms(state, path, srcUser)[PERMS.UPDATE]) throw new PermissionError("Not enough perms");
+    _update(state, path, value);
 }
 
 module.exports = {
-    ...PERMS,
-    ALL_PERMS: ALL_PERMS,
+    WILDCARD: WILDCARD,
+
+    PERMS: PERMS,
+
+    IMPORTANT_KEY: IMPORTANT_KEY,
 
     readPerms: readPerms,
-    _writePerms: _writePerms,
-    _create: _create,
-    _delete: _del,
-    _read: _read,
-    _update: _update,
+    u_updatePerms: _updatePerms,
+    u_updatePerm: _updatePerm,
+    u_create: _create,
+    u_delete: _del,
+    u_read: _read,
+    u_update: _update,
 
-    writePerms: writePerms,
+    updatePerms: updatePerms,
+    updatePerm: updatePerm,
     create: create,
     del: del,
     read: read,
