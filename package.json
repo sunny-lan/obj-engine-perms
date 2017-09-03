@@ -1,12 +1,11 @@
 {
-  "name": "obj-engine-perms",
+  "name": "obj-perms-engine",
   "version": "1.0.0",
-  "description": "Event to object mapping with permission enforcer",
-  "repository": "https://github.com/sunny-lan/obj-engine-perms",
+  "description": "Object engine with permissions",
+  "repository": "https://github.com/sunny-lan/obj-perms-engine",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node test.js"
+    "test": "node test.js"
   },
   "author": "Sunny",
   "license": "ISC",
