@@ -95,5 +95,10 @@ console.log("Attempting array break:");
 p.create(USER1, state, ["entities"], "abc", []);
 p.create(USER1, state, ["entities", "abc"], 0, "test");
 p.updatePerm(USER1, state, ["entities", "abc", 0], p.WILDCARD, p.PERMS.READ, true);
+try {
+    console.log("Result:", p.read(USER2, state, ["entities", "abc", 0]));
+}catch (e){
+    console.log("Unsuccessful", e);
+}
 
 cl("Final state");

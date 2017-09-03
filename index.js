@@ -65,9 +65,7 @@ function combine(perm1, perm2) {
 function getPerm(permTree, user) {
     const permAll = permTree[PERM_KEY];
     if (permAll === undefined) return undefined;
-    let permUser = permAll[user];
-    if (permUser === undefined) permUser = permAll[WILDCARD];
-    return permUser;
+    return combine(permAll[WILDCARD] === undefined ? [] : permAll[WILDCARD], permAll[user]);
 }
 
 
