@@ -9,7 +9,9 @@ let state = {};
 
 const cl = (...args) => console.log(...args, JSON.stringify(state, null, 4));
 
+
 //Root tests
+
 p.u_update(state, [], {
     serverTime: 100,
     entities: {
@@ -25,9 +27,11 @@ p.u_updatePerms(state, ROOT, [], Object.assign({"!": true}, p.PERMS.ALL));
 p.u_updatePerm(state, p.WILDCARD, [], p.PERMS.READ, true);
 cl("Perm update root");
 
-console.log("Read perms simple", p.readPerms(state, [], USER2));
 
 //Simple tests
+
+console.log("Read perms simple", p.readPerms(state, [], USER2));
+
 p.create(ROOT, state, [], "serverSecret", {"secret stuff": "password123"});
 cl("Create simple #1");
 
@@ -48,15 +52,8 @@ console.log("Read simple", p.read(USER2, state, ["entities", "lkdsfj1", "locatio
 p.del(USER1, state, ["entities", "lkdsfj", "location"]);
 cl("Del simple");
 
-//Coverage tests
 
-console.log("Attempting overwrite:");
-try {
-    p.create(USER2, state, ["entities"], "lkdsfj", {speed: 345234265, location: 643566});
-    cl("Overwrite catch failed");
-} catch (e) {
-    console.log("Overwrite successfully caught", e);
-}
+//Basic permission catch tests
 
 console.log("Attempting invalid read:");
 try {
@@ -73,3 +70,22 @@ try {
     console.log("Invalid write successfully caught", e);
 }
 
+
+// Advanced permission catch tests
+
+//Permission escalation by creating an existing path
+console.log("Attempting overwrite:");
+try {
+    p.create(USER2, state, ["entities"], "lkdsfj", {speed: 345234265, location: 643566});
+    cl("Overwrite catch failed");
+} catch (e) {
+    console.log("Overwrite successfully caught", e);
+}
+
+//Preventing important access by setting more specific permissions
+console.log("Attempting block:");
+try {
+    p.updatePerms(USER1, state, ["entities", "lkdsfj"], ROOT, p.PERMS.NONE);
+}catch (e){
+    console.log("Block successfully caught", e);
+}

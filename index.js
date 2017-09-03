@@ -90,12 +90,12 @@ function _update(state, path, value) {
 //permissioned operations
 function updatePerms(srcUser, state, path, user, perms) {
     if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
-    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Dst user has higher perms");
     _updatePerms(state, user, path, perms);
 }
 function updatePerm(srcUser, state, path, user, perm, value) {
     if (!readPerms(state, path, srcUser)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
-    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Not enough perms");
+    if (readPerms(state, path, user)[PERMS.UPDATE_PERMS])throw new PermissionError("Dst user has higher perms");
     _updatePerm(state, user, path, perm, value);
 }
 function create(srcUser, state, path, newObjName, newObjVal) {
