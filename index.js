@@ -176,6 +176,12 @@ function updateUserLevel(srcUser, state, level) {
 
 
 module.exports = {
+    __KEYS: {
+        PERM_KEY: PERM_KEY,
+        USER_KEY: USER_KEY,
+        OBJ_KEY: OBJ_KEY,
+    },
+
     WILDCARD: WILDCARD,
     PERMS: PERMS,
     IMPORTANT_KEY: IMPORTANT_KEY,
