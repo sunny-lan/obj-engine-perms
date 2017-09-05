@@ -840,7 +840,7 @@
       }
     }
   },
-  "state_55":{
+  "state_55": {
     "__obj": {
       "serverTime": 100,
       "entities": {
@@ -920,6 +920,329 @@
               "UPD": true,
               "RD": true,
               "UPD_P": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "state_98": {
+    "__obj": {
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        },
+        "abc": []
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
+      }
+    },
+    "__permissions": {
+      "__permissions": {
+        "ROOT": {
+          "!": true,
+          "CRT": true,
+          "DEL": true,
+          "UPD": true,
+          "RD": true,
+          "UPD_P": true
+        },
+        "*": {
+          "RD": true
+        }
+      },
+      "serverSecret": {
+        "__permissions": {
+          "ROOT": {
+            "CRT": true,
+            "DEL": true,
+            "UPD": true,
+            "RD": true,
+            "UPD_P": true
+          },
+          "*": {
+            "CRT": false,
+            "DEL": false,
+            "UPD": false,
+            "RD": false,
+            "UPD_P": false
+          }
+        }
+      },
+      "entities": {
+        "__permissions": {
+          "*": {
+            "CRT": true
+          }
+        },
+        "lkdsfj": {
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            },
+            "*": {
+              "RD": false
+            }
+          }
+        },
+        "lkdsfj1": {
+          "__permissions": {
+            "U2": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
+          }
+        },
+        "abc": {
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "state_99": {
+    "__obj": {
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        },
+        "abc": [
+          "test"
+        ]
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
+      }
+    },
+    "__permissions": {
+      "__permissions": {
+        "ROOT": {
+          "!": true,
+          "CRT": true,
+          "DEL": true,
+          "UPD": true,
+          "RD": true,
+          "UPD_P": true
+        },
+        "*": {
+          "RD": true
+        }
+      },
+      "serverSecret": {
+        "__permissions": {
+          "ROOT": {
+            "CRT": true,
+            "DEL": true,
+            "UPD": true,
+            "RD": true,
+            "UPD_P": true
+          },
+          "*": {
+            "CRT": false,
+            "DEL": false,
+            "UPD": false,
+            "RD": false,
+            "UPD_P": false
+          }
+        }
+      },
+      "entities": {
+        "__permissions": {
+          "*": {
+            "CRT": true
+          }
+        },
+        "lkdsfj": {
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            },
+            "*": {
+              "RD": false
+            }
+          }
+        },
+        "lkdsfj1": {
+          "__permissions": {
+            "U2": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
+          }
+        },
+        "abc": {
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
+          },
+          "0": {
+            "__permissions": {
+              "U1": {
+                "CRT": true,
+                "DEL": true,
+                "UPD": true,
+                "RD": true,
+                "UPD_P": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "state_101": {
+    "__obj": {
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        },
+        "abc": [
+          "test"
+        ]
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
+      }
+    },
+    "__permissions": {
+      "__permissions": {
+        "ROOT": {
+          "!": true,
+          "CRT": true,
+          "DEL": true,
+          "UPD": true,
+          "RD": true,
+          "UPD_P": true
+        },
+        "*": {
+          "RD": true
+        }
+      },
+      "serverSecret": {
+        "__permissions": {
+          "ROOT": {
+            "CRT": true,
+            "DEL": true,
+            "UPD": true,
+            "RD": true,
+            "UPD_P": true
+          },
+          "*": {
+            "CRT": false,
+            "DEL": false,
+            "UPD": false,
+            "RD": false,
+            "UPD_P": false
+          }
+        }
+      },
+      "entities": {
+        "__permissions": {
+          "*": {
+            "CRT": true
+          }
+        },
+        "lkdsfj": {
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            },
+            "*": {
+              "RD": false
+            }
+          }
+        },
+        "lkdsfj1": {
+          "__permissions": {
+            "U2": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
+          }
+        },
+        "abc": {
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
+          },
+          "0": {
+            "__permissions": {
+              "U1": {
+                "CRT": true,
+                "DEL": true,
+                "UPD": true,
+                "RD": true,
+                "UPD_P": true
+              },
+              "*": {
+                "RD": true
+              }
             }
           }
         }

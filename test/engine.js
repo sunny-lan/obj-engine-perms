@@ -45,6 +45,18 @@ describe("create", () => {
             location: 643566
         })).should.throw(p.PermissionError);
     });
+
+    it("should create arrays  with the correct permissions", () => {
+        let s = td.state_55;
+        p.create(USER1, s, ["entities"], "abc", []);
+        s.should.deep.equal(td.state_98);
+    });
+
+    it("should create array elements with the correct permissions", () => {
+        let s = td.state_98;
+        p.create(USER1, s, ["entities", "abc"], 0, "test");
+        s.should.deep.equal(td.state_99);
+    });
 });
 
 describe("updatePerm", () => {
@@ -65,6 +77,12 @@ describe("updatePerms", () => {
     it("should not allow user to set perms of a user that already has PERMS.UPDATE_PERMS", () => {
         let s = td.state_55;
         (() => p.updatePerms(USER1, s, ["entities", "lkdsfj"], ROOT, p.PERMS.NONE)).should.throw(p.PermissionError);
+    });
+
+    it("should set permissions for array elements", () => {
+        let s = td.state_99;
+        p.updatePerm(USER1, s, ["entities", "abc", 0], p.WILDCARD, p.PERMS.READ, true);
+        s.should.deep.equal(td.state_101);
     });
 });
 
