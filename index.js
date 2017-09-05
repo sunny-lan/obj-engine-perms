@@ -176,6 +176,8 @@ function updateUserLevel(srcUser, state, level) {
 
 
 module.exports = {
+    PermissionError: PermissionError,
+
     __KEYS: {
         PERM_KEY: PERM_KEY,
         USER_KEY: USER_KEY,

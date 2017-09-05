@@ -31,34 +31,66 @@ describe("readPerms", () => it("should return permission of the user at path", (
     p.readPerms(s, [], USER2).should.deep.equal(td.readPerms.out);
 }));
 
-describe("create", () => it("should allow user with PERMS.CREATE to create object at path; assigns PERMS.ALL to creator", () => {
-    let s = td.create.in;
-    p.create(ROOT, s, [], "serverSecret", {"secret stuff": "password123"});
-    s.should.deep.equal(td.create.out);
-}));
+describe("create", () => {
+    it("should allow user with PERMS.CREATE to create object at path; assigns PERMS.ALL to creator", () => {
+        let s = td.create.in;
+        p.create(ROOT, s, [], "serverSecret", {"secret stuff": "password123"});
+        s.should.deep.equal(td.create.out);
+    });
 
-describe("updatePerm", () => it("should allow user with PERMS.UPDATE_PERMS to set single permission value of another user", () => {
-    let s = td.updatePerm.in;
-    p.updatePerm(ROOT, s, ["entities"], p.WILDCARD, p.PERMS.CREATE, true);
-    s.should.deep.equal(td.updatePerm.out);
-}));
+    it("should not allow user to overwrite an existing object", () => {
+        let s = td.create.in;
+        (() => p.create(USER2, s, ["entities"], "lkdsfj", {
+            speed: 345234265,
+            location: 643566
+        })).should.throw(p.PermissionError);
+    });
+});
 
-describe("updatePerms", () => it("should allow user with PERMS.UPDATE_PERMS to set whole permission value of another user", () => {
-    let s = td.updatePerms.in;
-    p.updatePerms(ROOT, s, ["serverSecret"], p.WILDCARD, p.PERMS.NONE);
-    s.should.deep.equal(td.updatePerms.out);
-}));
+describe("updatePerm", () => {
+    it("should allow user with PERMS.UPDATE_PERMS to set single permission value of another user", () => {
+        let s = td.updatePerm.in;
+        p.updatePerm(ROOT, s, ["entities"], p.WILDCARD, p.PERMS.CREATE, true);
+        s.should.deep.equal(td.updatePerm.out);
+    });
+});
 
-describe("update", () => it("should allow user with PERMS.UPDATE to set value at path", () => {
-    let s = td.update.in;
-    p.update(USER1, s, ["entities", "lkdsfj", "speed"], 36623);
-    s.should.deep.equal(td.update.out);
-}));
+describe("updatePerms", () => {
+    it("should allow user with PERMS.UPDATE_PERMS to set whole permission value of another user", () => {
+        let s = td.updatePerms.in;
+        p.updatePerms(ROOT, s, ["serverSecret"], p.WILDCARD, p.PERMS.NONE);
+        s.should.deep.equal(td.updatePerms.out);
+    });
 
-describe("read", () => it("should allow user with PERMS.READ to get value at path", () => {
-    let s = td.read.in;
-    p.read(USER2, s, ["entities", "lkdsfj1", "location"]).should.deep.equal(td.read.out);
-}));
+    it("should not allow user to set perms of a user that already has PERMS.UPDATE_PERMS", () => {
+        let s = td.state_55;
+        (() => p.updatePerms(USER1, s, ["entities", "lkdsfj"], ROOT, p.PERMS.NONE)).should.throw(p.PermissionError);
+    });
+});
+
+describe("update", () => {
+    it("should allow user with PERMS.UPDATE to set value at path", () => {
+        let s = td.update.in;
+        p.update(USER1, s, ["entities", "lkdsfj", "speed"], 36623);
+        s.should.deep.equal(td.update.out);
+    });
+
+    it("should not allow user without PERMS.UPDATE to set value at path", () => {
+        let s = td.state_55;
+        (() => p.update(USER1, s, ["entities", "lkdsfj1", "speed"], 24018)).should.throw(p.PermissionError);
+    });
+});
+
+describe("read", () => {
+    it("should allow user with PERMS.READ to get value at path", () => {
+        let s = td.read.in;
+        p.read(USER2, s, ["entities", "lkdsfj1", "location"]).should.deep.equal(td.read.out);
+    });
+    it("should not allow user without PERMS.READ to get value at path", () => {
+        let s = td.state_55;
+        (() => p.read(USER2, s, ["entities", "lkdsfj"])).should.throw(p.PermissionError);
+    });
+});
 
 describe("del", () => it("should allow user with PERMS.DELETE to delete value at path", () => {
     let s = td.del.in;
