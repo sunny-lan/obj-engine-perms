@@ -1,7 +1,7 @@
 const Engine = require('../index');
 const should = require('chai').should();
 const td = require("./engine_testdata");
-const permModule = require("../defaultPerms");
+const permModule = require("../crudPerms");
 const PermissionError = require('../PermissionError');
 
 const ROOT = "ROOT",

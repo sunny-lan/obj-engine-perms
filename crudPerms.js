@@ -1,3 +1,6 @@
+//crudPerms.js
+//Permissions controlling the create, read, update, delete, and updatePerm operations individually
+
 const PermissionError = require("./PermissionError");
 
 const IMPORTANT_KEY = "!";

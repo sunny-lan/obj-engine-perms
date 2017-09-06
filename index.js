@@ -1,5 +1,6 @@
 const resolve = require('object-path');
-const defaultPerms = require('./defaultPerms');
+const defaultPerms = require('./crudPerms');
+const PermissionError=require('./PermissionError');
 
 function arrayToString(path) {
     return path.map((elem) => elem.toString());
