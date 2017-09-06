@@ -2,6 +2,7 @@ const Engine = require('../index');
 const should = require('chai').should();
 const td = require("./engine_testdata");
 const permModule = require("../defaultPerms");
+const PermissionError = require('../PermissionError');
 
 const ROOT = "ROOT",
     USER1 = "U1",
@@ -49,7 +50,7 @@ describe("create", () => {
         (() => testEngine.create(USER2, s, ["entities"], "lkdsfj", {
             speed: 345234265,
             location: 643566
-        })).should.throw(testEngine.PermissionError);
+        })).should.throw(PermissionError);
     });
 
     it("should create arrays  with the correct permissions", () => {
@@ -87,7 +88,7 @@ describe("updatePerms", () => {
     it("should not allow user to set perms of a user that already has PERMS.UPDATE_PERMS", () => {
         const testEngine = new Engine();
         let s = td.state_55;
-        (() => testEngine.updatePerms(USER1, s, ["entities", "lkdsfj"], ROOT, permModule.PERMS.NONE)).should.throw(testEngine.PermissionError);
+        (() => testEngine.updatePerms(USER1, s, ["entities", "lkdsfj"], ROOT, permModule.PERMS.NONE)).should.throw(PermissionError);
     });
 
     it("should set permissions for array elements", () => {
@@ -109,7 +110,7 @@ describe("update", () => {
     it("should not allow user without PERMS.UPDATE to set value at path", () => {
         const testEngine = new Engine();
         let s = td.state_55;
-        (() => testEngine.update(USER1, s, ["entities", "lkdsfj1", "speed"], 24018)).should.throw(testEngine.PermissionError);
+        (() => testEngine.update(USER1, s, ["entities", "lkdsfj1", "speed"], 24018)).should.throw(PermissionError);
     });
 });
 
@@ -122,7 +123,7 @@ describe("read", () => {
     it("should not allow user without PERMS.READ to get value at path", () => {
         const testEngine = new Engine();
         let s = td.state_55;
-        (() => testEngine.read(USER2, s, ["entities", "lkdsfj"])).should.throw(testEngine.PermissionError);
+        (() => testEngine.read(USER2, s, ["entities", "lkdsfj"])).should.throw(PermissionError);
     });
 });
 
