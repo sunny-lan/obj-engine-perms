@@ -283,3 +283,38 @@ obj={
 Because `"b"` is a child of `"a"`, by default, "john" will have CREATE permissions on `"b"`.
 Similarly, he will also have CREATE permissions on "c", and "e".
 This also applies to arrays; "wendy" will have UPDATE access to all the elements in array `"d"`.
+
+## Configuration
+
+The engine accepts a configuration object in its constructor:
+
+```javascript
+const ObjPermsEngine=require('obj-perms-engine').ObjPermsEngine;
+
+const config={
+    // configuration options here
+};
+
+const engine = new ObjPermsEngine(config);
+```
+
+The default configuration for the engine looks like this:
+
+```javascript
+config={
+   PERM_KEY: '__permissions', //the key that the permission metadata will be stored in
+   OBJ_KEY: '__obj', //the key that the actual object will be stored in
+   USER_KEY: '__usr', //the key that the user levels will be stored in
+   WILDCARD: '*', //the symbol to use to for wildcard
+
+   USER_LEVEL: { //the availible user levels
+       ROOT: 0,
+       USER: 1
+   },
+   DEFAULT_USER_LEVEL: Number.MAX_VALUE, //the default user level
+
+   permsModule: defaultPerms, //the permission module to use (CRUDPerms by default)
+}
+```
+
+Any configuration value not provided by the user will be set to the value in the default config
