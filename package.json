@@ -1,6 +1,6 @@
 {
   "name": "obj-perms-engine",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Object engine with permissions",
   "repository": "https://github.com/sunny-lan/obj-perms-engine",
   "main": "index.js",
