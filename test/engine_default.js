@@ -1,4 +1,4 @@
-const Engine = require('../index');
+const Engine = require('../engine');
 const should = require('chai').should();
 const td = require("./engine_testdata");
 const permModule = require("../crudPerms");
