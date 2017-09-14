@@ -17,8 +17,7 @@ Written using NodeJS version: **6.10.3**
  
 ## Naming conventions (IMPORTANT)
 
-`state` - the *container* of the actual object. Remember that this is NOT the actual object,
-as it also contains metadata in addition to the object.
+`state` - the object that is being operated upon. Note that a PERM_KEY will be added to the object to store permissions
 
 `srcUser` - the user that is performing the said operation
 

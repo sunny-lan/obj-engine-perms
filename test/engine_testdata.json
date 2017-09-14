@@ -10,39 +10,26 @@
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
         }
       }
     }
   },
   "u_updatePerms": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
         }
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -53,21 +40,19 @@
             "RD": true,
             "UPD_P": true
           }
+        }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
         }
       }
     }
   },
   "u_updatePerm": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -79,18 +64,16 @@
             "UPD_P": true
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -104,21 +87,19 @@
           "*": {
             "RD": true
           }
+        }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
         }
       }
     }
   },
   "readPerms": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -132,6 +113,13 @@
           "*": {
             "RD": true
           }
+        }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
         }
       }
     },
@@ -141,15 +129,6 @@
   },
   "create": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -164,21 +143,16 @@
             "RD": true
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -204,23 +178,21 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     }
   },
   "updatePerm": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -246,21 +218,19 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -293,23 +263,21 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     }
   },
   "updatePerms": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -342,21 +310,19 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -396,31 +362,21 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     }
   },
   "update": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          },
-          "lkdsfj": {
-            "speed": 345,
-            "location": 666
-          },
-          "lkdsfj1": {
-            "speed": 34235,
-            "location": 6632656
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -485,29 +441,27 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 345,
+          "location": 666
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          },
-          "lkdsfj": {
-            "speed": 36623,
-            "location": 666
-          },
-          "lkdsfj1": {
-            "speed": 34235,
-            "location": 6632656
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -572,31 +526,29 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623,
+          "location": 666
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     }
   },
   "read": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          },
-          "lkdsfj": {
-            "speed": 36623,
-            "location": 666
-          },
-          "lkdsfj1": {
-            "speed": 34235,
-            "location": 6632656
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -661,32 +613,30 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623,
+          "location": 666
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     },
     "out": 6632656
   },
   "del": {
     "in": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          },
-          "lkdsfj": {
-            "speed": 36623,
-            "location": 666
-          },
-          "lkdsfj1": {
-            "speed": 34235,
-            "location": 6632656
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -751,28 +701,27 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623,
+          "location": 666
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     },
     "out": {
-      "__obj": {
-        "serverTime": 100,
-        "entities": {
-          "1": {
-            "speed": 3,
-            "location": 4
-          },
-          "lkdsfj": {
-            "speed": 36623
-          },
-          "lkdsfj1": {
-            "speed": 34235,
-            "location": 6632656
-          }
-        },
-        "serverSecret": {
-          "secret stuff": "password123"
-        }
-      },
       "__permissions": {
         "__permissions": {
           "ROOT": {
@@ -837,29 +786,27 @@
             }
           }
         }
+      },
+      "serverTime": 100,
+      "entities": {
+        "1": {
+          "speed": 3,
+          "location": 4
+        },
+        "lkdsfj": {
+          "speed": 36623
+        },
+        "lkdsfj1": {
+          "speed": 34235,
+          "location": 6632656
+        }
+      },
+      "serverSecret": {
+        "secret stuff": "password123"
       }
     }
   },
   "state_55": {
-    "__obj": {
-      "serverTime": 100,
-      "entities": {
-        "1": {
-          "speed": 3,
-          "location": 4
-        },
-        "lkdsfj": {
-          "speed": 36623
-        },
-        "lkdsfj1": {
-          "speed": 34235,
-          "location": 6632656
-        }
-      },
-      "serverSecret": {
-        "secret stuff": "password123"
-      }
-    },
     "__permissions": {
       "__permissions": {
         "ROOT": {
@@ -924,29 +871,26 @@
           }
         }
       }
+    },
+    "serverTime": 100,
+    "entities": {
+      "1": {
+        "speed": 3,
+        "location": 4
+      },
+      "lkdsfj": {
+        "speed": 36623
+      },
+      "lkdsfj1": {
+        "speed": 34235,
+        "location": 6632656
+      }
+    },
+    "serverSecret": {
+      "secret stuff": "password123"
     }
   },
   "state_98": {
-    "__obj": {
-      "serverTime": 100,
-      "entities": {
-        "1": {
-          "speed": 3,
-          "location": 4
-        },
-        "lkdsfj": {
-          "speed": 36623
-        },
-        "lkdsfj1": {
-          "speed": 34235,
-          "location": 6632656
-        },
-        "abc": []
-      },
-      "serverSecret": {
-        "secret stuff": "password123"
-      }
-    },
     "__permissions": {
       "__permissions": {
         "ROOT": {
@@ -1022,31 +966,27 @@
           }
         }
       }
+    },
+    "serverTime": 100,
+    "entities": {
+      "1": {
+        "speed": 3,
+        "location": 4
+      },
+      "lkdsfj": {
+        "speed": 36623
+      },
+      "lkdsfj1": {
+        "speed": 34235,
+        "location": 6632656
+      },
+      "abc": []
+    },
+    "serverSecret": {
+      "secret stuff": "password123"
     }
   },
   "state_99": {
-    "__obj": {
-      "serverTime": 100,
-      "entities": {
-        "1": {
-          "speed": 3,
-          "location": 4
-        },
-        "lkdsfj": {
-          "speed": 36623
-        },
-        "lkdsfj1": {
-          "speed": 34235,
-          "location": 6632656
-        },
-        "abc": [
-          "test"
-        ]
-      },
-      "serverSecret": {
-        "secret stuff": "password123"
-      }
-    },
     "__permissions": {
       "__permissions": {
         "ROOT": {
@@ -1111,15 +1051,6 @@
           }
         },
         "abc": {
-          "__permissions": {
-            "U1": {
-              "CRT": true,
-              "DEL": true,
-              "UPD": true,
-              "RD": true,
-              "UPD_P": true
-            }
-          },
           "0": {
             "__permissions": {
               "U1": {
@@ -1130,34 +1061,41 @@
                 "UPD_P": true
               }
             }
+          },
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
           }
         }
       }
+    },
+    "serverTime": 100,
+    "entities": {
+      "1": {
+        "speed": 3,
+        "location": 4
+      },
+      "lkdsfj": {
+        "speed": 36623
+      },
+      "lkdsfj1": {
+        "speed": 34235,
+        "location": 6632656
+      },
+      "abc": [
+        "test"
+      ]
+    },
+    "serverSecret": {
+      "secret stuff": "password123"
     }
   },
   "state_101": {
-    "__obj": {
-      "serverTime": 100,
-      "entities": {
-        "1": {
-          "speed": 3,
-          "location": 4
-        },
-        "lkdsfj": {
-          "speed": 36623
-        },
-        "lkdsfj1": {
-          "speed": 34235,
-          "location": 6632656
-        },
-        "abc": [
-          "test"
-        ]
-      },
-      "serverSecret": {
-        "secret stuff": "password123"
-      }
-    },
     "__permissions": {
       "__permissions": {
         "ROOT": {
@@ -1222,15 +1160,6 @@
           }
         },
         "abc": {
-          "__permissions": {
-            "U1": {
-              "CRT": true,
-              "DEL": true,
-              "UPD": true,
-              "RD": true,
-              "UPD_P": true
-            }
-          },
           "0": {
             "__permissions": {
               "U1": {
@@ -1244,9 +1173,38 @@
                 "RD": true
               }
             }
+          },
+          "__permissions": {
+            "U1": {
+              "CRT": true,
+              "DEL": true,
+              "UPD": true,
+              "RD": true,
+              "UPD_P": true
+            }
           }
         }
       }
+    },
+    "serverTime": 100,
+    "entities": {
+      "1": {
+        "speed": 3,
+        "location": 4
+      },
+      "lkdsfj": {
+        "speed": 36623
+      },
+      "lkdsfj1": {
+        "speed": 34235,
+        "location": 6632656
+      },
+      "abc": [
+        "test"
+      ]
+    },
+    "serverSecret": {
+      "secret stuff": "password123"
     }
   }
 }

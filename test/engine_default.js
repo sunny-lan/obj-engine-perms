@@ -8,13 +8,6 @@ const ROOT = "ROOT",
     USER1 = "U1",
     USER2 = "U2";
 
-describe('u_update', () => it("should updatePerms the tree to a value", () => {
-    const testEngine = new Engine();
-    let s = {};
-    testEngine.u_update(s, [], td.u_update.in);
-    s.should.deep.equal(td.u_update.out);
-}));
-
 describe('u_updatePerms', () => it('should set permissions at path for user', () => {
     const testEngine = new Engine();
     let s = td.u_updatePerms.in;
