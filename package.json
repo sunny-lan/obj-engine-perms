@@ -10,7 +10,8 @@
   "author": "Sunny",
   "license": "ISC",
   "dependencies": {
-    "object-path": "^0.11.4"
+    "object-path": "^0.11.4",
+    "deep-assign": "latest"
   },
   "devDependencies": {
     "chai": "^4.1.2"
