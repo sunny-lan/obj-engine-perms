@@ -86,10 +86,11 @@ class ObjPermEngine {
     //non permissioned operations
 
     _readPerms(idx, permTree, user, arr) {
-        const perm = this.getPerm(permTree, user);
+        let perm = this.getPerm(permTree, user);
         if (idx === arr.length) return perm;
         const next = permTree[arr[idx].toString()];
         if (next === undefined)return perm;
+        perm = perm || this.config.permsModule.PERMS.NONE;
         return this.config.permsModule.combine(perm, this._readPerms(idx + 1, next, user, arr))
     }
 
