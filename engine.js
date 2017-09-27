@@ -1,7 +1,7 @@
 const resolve = require('object-path');
 const defaultPerms = require('./crudPerms');
 const PermissionError = require('./PermissionError');
-const deepAssign=require('deep-assign');
+const assign = require('assign-deep');
 
 function arrayToString(path) {
     return path.map((elem) => elem.toString());
@@ -27,7 +27,7 @@ function u_update(state, path, value) {
 
 class ObjPermEngine {
     constructor(config) {
-        this.config = deepAssign({
+        this.config = assign({
             PERM_KEY: '__permissions',
             USER_KEY: '__usr',
             WILDCARD: '*',
