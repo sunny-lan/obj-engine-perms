@@ -10,7 +10,9 @@
   "author": "Sunny",
   "license": "ISC",
   "dependencies": {
+    "abind": "latest",
     "assign-deep": "^0.4.6",
+    "auto-bind": "^1.1.0",
     "deep-assign": "latest",
     "object-path": "^0.11.4"
   },
