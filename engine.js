@@ -1,7 +1,6 @@
 const resolve = require('object-path');
 const defaultPerms = require('./crudPerms');
 const PermissionError = require('./PermissionError');
-const assign1 = require('assign-deep');
 const abind = require('auto-bind');
 
 function arrayToString(path) {
@@ -30,7 +29,7 @@ class ObjPermEngine {
     constructor(config) {
         abind(this);
 
-        this.config = assign1({
+        this.config = Object.assign({
             PERM_KEY: '__permissions',
             USER_KEY: '__usr',
             WILDCARD: '*',
