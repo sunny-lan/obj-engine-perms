@@ -28,6 +28,8 @@ function u_update(state, path, value) {
 
 class ObjPermEngine {
     constructor(config) {
+        abind(this);
+
         this.config = assign1({
             PERM_KEY: '__permissions',
             USER_KEY: '__usr',
@@ -41,8 +43,6 @@ class ObjPermEngine {
 
             permsModule: defaultPerms,
         }, config);
-
-        abind(this);
     }
 
     //returns path leading to perm tree
