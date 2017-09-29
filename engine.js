@@ -34,9 +34,10 @@ class ObjPermEngine {
             USER_KEY: '__usr',
             WILDCARD: '*',
 
+            //todo move to perm module
             USER_LEVEL: {
                 ROOT: 0,
-                USER: 1
+                USER: 1,
             },
             DEFAULT_USER_LEVEL: Number.MAX_VALUE,
 
@@ -79,9 +80,9 @@ class ObjPermEngine {
         resolve.set(state, this._userPath([user]), level);
     }
 
-    updateUserLevel(srcUser, state, level) {
+    updateUserLevel(srcUser, state, user, level) {
         if (this._isNonRoot(state, srcUser)) throw Error("Not enough permissions");
-        this.u_updateUserLevel(srcUser, state, level);
+        this.u_updateUserLevel(user, state, level);
     }
 
 
