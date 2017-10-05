@@ -31,7 +31,7 @@ function updatePerm(srcUserPerms, perms) {
 }
 
 function create(perms) {
-    if (perms.lvl < PERMS.OWNER)throw new PermissionError("Not enough perms");
+    if (perms.lvl < PERMS.EDITOR)throw new PermissionError("Not enough perms");
 }
 
 function del(perms) {
