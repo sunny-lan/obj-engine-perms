@@ -2,6 +2,7 @@ const resolve = require('object-path');
 const defaultPerms = require('./crudPerms');
 const PermissionError = require('./PermissionError');
 const abind = require('auto-bind');
+const d = require('./util').getDefault;
 
 function arrayToString(path) {
     return path.map((elem) => elem.toString());
@@ -62,9 +63,10 @@ class ObjPermEngine {
 
     //helps calculate a users permissions from the permtree (including wildcard)
     getPerm(permTree, user) {
+        //tries to get permtree
         const permAll = permTree[this.config.PERM_KEY];
-        if (permAll === undefined) return undefined;
-        return this.config.permsModule.combine(permAll[this.config.WILDCARD] === undefined ? [] : permAll[this.config.WILDCARD], permAll[user]);
+        if (permAll === undefined) return this.config.permsModule.PERMS.NONE;//undefined perms=none perms
+        return this.config.permsModule.combine(d(permAll[this.config.WILDCARD], []), permAll[user]);
     }
 
 
@@ -91,15 +93,17 @@ class ObjPermEngine {
     _readPerms(idx, permTree, user, arr) {
         let perm = this.getPerm(permTree, user);
         if (idx === arr.length) return perm;
+        //get next child in path
         const next = permTree[arr[idx].toString()];
-        if (next === undefined)return perm;
-        perm = perm || this.config.permsModule.PERMS.NONE;
+        //if child doesn't exist, just use parent perms
+        if (next === undefined) return perm;
         return this.config.permsModule.combine(perm, this._readPerms(idx + 1, next, user, arr))
     }
 
     readPerms(state, path, user) {
         if (path[0] === this.config.PERM_KEY) throw PermissionError("Illegal permtree access");
-        return this._readPerms(0, state[this.config.PERM_KEY], user, path);
+        //uses internal func, given permtree
+        return this._readPerms(0, d(state[this.config.PERM_KEY], {}), user, path);
     }
 
     u_updatePerms(state, user, path, perms) {
